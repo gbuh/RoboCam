@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="bin" path="src"/>
+	<classpathentry kind="var" path="JRE_LIB" sourcepath="JRE_SRC"/>
+	<classpathentry kind="con" path="C:/Users/Администратор/eclipse-workspace/Camera/bin"/>
+	<classpathentry kind="lib" path="C:/REC_GmbH/robotino/api2/bin/rec_robotino_api2_java.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
