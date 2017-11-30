@@ -2,7 +2,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 /**
@@ -45,6 +49,13 @@ public class CameraWidget extends JComponent
 		public void onImageReceived(Image img)
 		{
 			cameraImg = img;
+			File f = new File("C:\\Users\\Администратор\\eclipse-workspace\\Camera\\out.jpg");
+            try {
+				ImageIO.write((RenderedImage)img, "jpg", f);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			repaint();
 		}	
 		
