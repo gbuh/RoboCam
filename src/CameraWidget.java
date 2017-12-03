@@ -50,50 +50,12 @@ public class CameraWidget extends JComponent
 		@Override
 		public void onImageReceived(Image img)
 		{
-//			BufferedImage bimg = (BufferedImage)img;
-//			bimg.setRGB(101, 101, 0);
-//			bimg.setRGB(102, 102, 0);
-//			bimg.setRGB(103, 103, 0);
-//			img = bimg;
-//		    int width = ((BufferedImage)img).getWidth();
-//		    int height = ((BufferedImage)img).getHeight();
-		  //get pixel value
-/*			
-			BufferedImage img1 = (BufferedImage)img; 
-		    int p = img1.getRGB(0,0);
-		    //get alpha
-		    int a = (p>>24) & 0xff;
-		    //get red
-		    int r = (p>>16) & 0xff;
-		    //get green
-		    int g = (p>>8) & 0xff;
-		    //get blue
-		    int b = p & 0xff;
-		    a = 255;
-		    r = 255;
-		    g = 255;
-		    b = 255;
-
-		    //set the pixel value
-		    p = (a<<24) | (r<<16) | (g<<8) | b;
-		    img1.setRGB(0, 0, p);
-
-			cameraImg = img1;
-*/
-			
-			try {
-				PixelColor pixelColor = new PixelColor();
-				pixelColor.getPixelColor(img, 0, 0);
-//				pixelColor.setPixelColor(img, 0, 0, 255, 255, 255, 255);
-				pixelColor.setNegativePicture(img);
-				cameraImg = img;
-					int i = 1;					
-					File file = new File("out" + i + ".jpg"); //C:\\Users\\Администратор\\eclipse-workspace\\Camera\\
-					ImageIO.write((RenderedImage)cameraImg, "jpg", file); // img
-					
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			PixelColor pixelColor = new PixelColor();
+			//	pixelColor.getPixelColor(img, 0, 0);
+			//	pixelColor.setPixelColor(img, 0, 0, 255, 255, 255, 255);
+			pixelColor.setNegativePicture(img);
+			pixelColor.saveImage(img);
+			cameraImg = img;
 			repaint();
 		}	
 
