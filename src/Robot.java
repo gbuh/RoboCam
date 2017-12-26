@@ -61,7 +61,8 @@ public class Robot
 		_bumper.setComId( _com.id() );
 
 		_camera.setComId( _com.id() );
-		
+//		_camera.setFormat(1920, 1080, "jpg");//////////////////////////////////
+
 		_odometry.setComId( _com.id() );
 	}
 	
@@ -95,7 +96,46 @@ public class Robot
 	{
 		_omniDrive.setVelocity( vx, vy, omega );
 	}
-	
+/////////////////////////////////////////////////////////////////////////	
+    public void rotate(float[] inArray, float[] outArray, float deg)
+    {
+        float rad = 2 * (float)Math.PI / 360.0f * deg;
+        outArray[0] = (float)Math.cos(rad) * inArray[0] - (float)Math.sin(rad) * inArray[1];
+        outArray[1] = (float)Math.sin(rad) * inArray[0] + (float)Math.cos(rad) * inArray[1];
+    }
+    
+    void rotateInPlace(float[] v, float deg)
+    {
+        float rad = 2 * (float)Math.PI / 360.0f * deg;
+        float tmp = v[0];
+        v[0] = (float)Math.cos(rad) * v[0] - (float)Math.sin(rad) * v[1];
+        v[1] = (float)Math.sin(rad) * tmp + (float)Math.cos(rad) * v[1];
+    }
+    
+    public void drive() throws InterruptedException
+    {
+    	System.out.println("Driving...");
+//        float[] startVector = new float[] {0.2f, 0.0f };
+        float[] dir = new float[2];
+        float a = 0.0f;
+//        Thread.sleep(5000);
+        while (_com.isConnected() && false == _bumper.value() )
+        {
+
+//        	while (isLaserBlob(cameraImg)) {
+//        		System.out.println("I See Red Laser!!!!!!!!!!!!!!!!");
+//        	}
+            //rotate 360degrees in 5s
+//	        rotate( startVector, dir, a );
+	        rotateInPlace(dir, 45);
+//	        a = 360.0f * _com.msecsElapsed() / 5000;
+
+	        _omniDrive.setVelocity( dir[0], dir[1], 1.0f );
+
+            Thread.sleep(100);
+        }
+    }
+/////////////////////////////////////////////////////////////////////////
 	/**
 	 * The class MyCom derives from rec.robotino.com.Com and implements some of the virtual event handling methods.
 	 * This is the standard approach for handling these Events.
@@ -152,7 +192,8 @@ public class Robot
 		public MyCamera()
 		{
 			setCameraNumber(0);
-			setBGREnabled(true);
+			setBGREnabled(false);
+//			setFormat(1920, 1080, "png");////////////////////////////
 		}
 		
 		@Override

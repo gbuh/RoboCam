@@ -17,6 +17,18 @@ import javax.swing.JComponent;
 public class CameraWidget extends JComponent
 {
 	private volatile Image cameraImg;
+	private PixelColor pixelColor = new PixelColor();
+	Robot robot = new Robot();
+//	private float[] dir = new float[] { 1.0f, 0.0f };
+//	private float deg = -20;
+	
+//	public PixelColor getPixelColor() {
+//		return pixelColor;
+//	}
+//
+//	public void setPixelColor(PixelColor pixelColor) {
+//		this.pixelColor = pixelColor;
+//	}
 
 	public CameraWidget(Robot robot)
 	{
@@ -32,7 +44,7 @@ public class CameraWidget extends JComponent
 	@Override
 	protected void paintComponent(Graphics g)
 	{
-		if(cameraImg != null)
+		if(cameraImg != null && !pixelColor.robotLaserBlob(cameraImg)) //  
 		{
 			g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
 		}
@@ -50,11 +62,45 @@ public class CameraWidget extends JComponent
 		@Override
 		public void onImageReceived(Image img)
 		{
-			PixelColor pixelColor = new PixelColor();
+//			float matrix[] = {1, 1, 1, 1, 1, 1, 1, 1, 1};
+//			ConvolveFilter filter = new ConvolveFilter(matrix);
+//			filter.filter((BufferedImage)img, (BufferedImage)img);
+			
+//			PixelColor pixelColor = new PixelColor();
 			//	pixelColor.getPixelColor(img, 0, 0);
 			//	pixelColor.setPixelColor(img, 0, 0, 255, 255, 255, 255);
-			pixelColor.setNegativePicture(img);
-			pixelColor.saveImage(img);
+//			pixelColor.setNegativePicture(img);
+//			pixelColor.saveImage(img);
+//			pixelColor.saveImageFrame(img);
+//			pixelColor.setGrayPicture(img);
+//			pixelColor.setLaserImage(img);
+//			pixelColor.setBlackWhitePicture(img);
+//			pixelColor.robotLaserBlob(img);
+//			pixelColor.videoCapture();	
+			
+//        	for (int i = 0; i < 1; i++) {
+			if(pixelColor.robotLaserBlob(img))
+			{
+				String hostname = "127.0.0.1";
+//				DrivelnCircle robotino = new DrivelnCircle();
+				
+				try
+				{
+					robot.connect(hostname, true);
+					robot.drive();
+					robot.disconnect();
+		        
+				}
+				catch (Exception e)
+				{
+					System.out.println(e.toString());
+				}
+//				Robot robot = new Robot();
+//				robot.addListener( new RobotListenerImpl() );
+//				robot.setVelocity(dir[1], dir[0], 0);
+//				robot.rotateInPlace(dir, deg);
+			}
+//        	}
 			cameraImg = img;
 			repaint();
 		}	
@@ -76,7 +122,7 @@ public class CameraWidget extends JComponent
 
 		@Override
 		public void onOdometryReceived(double x, double y, double phi)
-		{			
+		{
 		}
 	}
 }

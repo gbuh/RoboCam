@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 public class DriveWidget extends JComponent
 {
 	protected static final float speed = 0.2f;
-	protected static final float rotSpeed = 2f;
+	protected static final float rotSpeed = 1f;
 	
 	protected final Robot robot;
 
@@ -67,7 +67,7 @@ public class DriveWidget extends JComponent
 		setMaximumSize( new Dimension(Short.MAX_VALUE, Short.MAX_VALUE) );
 
 		_timer = new Timer();
-		_timer.scheduleAtFixedRate(new OnTimeOut(), 0, 20);
+//		_timer.scheduleAtFixedRate(new OnTimeOut(), 0, 20);
 	}
 	
 	public void setVelocity(float vx, float vy, float omega)
