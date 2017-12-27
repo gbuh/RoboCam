@@ -103,9 +103,11 @@ public class ConnectWidget extends JComponent
 			{
 			try
 				{
+				int x = 0;
+				x = pixelColor.getLaserBlob(img);
 //					int counter = 0;
 //				while (counter < 1) {
-						robot.drive();
+						robot.drive(x);
 //						counter++;
 //					}
 				}

@@ -180,7 +180,7 @@ public class PixelColor {
 		return false;
 	}
 	
-	public void getLaserBlob(Image img) {
+	public int getLaserBlob(Image img) {
 		buffImg = (BufferedImage)img;
 		//get image width and height
 		int width = buffImg.getWidth();
@@ -189,10 +189,12 @@ public class PixelColor {
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				getPixelColor(img, x, y);
-				if (r == 255 && g == 255 && b == 255) // if (r != 0 && g != 0 && b != 0)
+				if (r >= 200 && g <= 10 && b <= 10) {// if (r != 0 && g != 0 && b != 0) (r == 255 && g == 255 && b == 255)
 					System.out.println("X =" + x + " Y =" + y);
+					return x;
+				}
 			}
-		}
+		} return 0;
 	}
 	
 	public void setLagrange(Image img) {

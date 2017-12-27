@@ -97,13 +97,28 @@ public class Robot
 		_omniDrive.setVelocity( vx, vy, omega );
 	}
 /////////////////////////////////////////////////////////////////////////	
-    public void rotate(float[] inArray, float[] outArray, float deg)
-    {
-        float rad = 2 * (float)Math.PI / 360.0f * deg;
-        outArray[0] = (float)Math.cos(rad) * inArray[0] - (float)Math.sin(rad) * inArray[1];
-        outArray[1] = (float)Math.sin(rad) * inArray[0] + (float)Math.cos(rad) * inArray[1];
-    }
-    
+	public float getAngleToRotate(int x) {
+		float deg = 0;
+
+		if (x == 160) {
+			deg = 0;
+		} else deg = (160 - x) * 0.28125f;
+		//turn left
+//		else if (x < 160) {
+//			deg = (160 - x) * 0.28125f;
+//			//turn right
+//		} else if(x > 160) {
+//			deg = (x - 160) * 0.28125f;
+//		}
+		return deg;
+	}
+
+	public float getAngularSpeed(float deg) {
+		float w = 0.0f;
+		w = (float) (2 * Math.PI * (deg / 360));
+		return w;
+	}
+
     void rotateInPlace(float[] v, float deg)
     {
         float rad = 2 * (float)Math.PI / 360.0f * deg;
@@ -117,16 +132,20 @@ public class Robot
         outArray[1] = inArray[1]; //y
     }
     
-    public void drive() throws InterruptedException
+    public void drive(int x) throws InterruptedException
     {
     	System.out.println("Driving...");
     	int counter = 0;
     	while (counter < 1) { //_com.isConnected() && false == _bumper.value() && 
     		float[] dir = new float[2];
     		float a = 0.0f;
-//    		a = 360.0f * _com.msecsElapsed() / 5000;
-    		rotateInPlace(dir, a);
-    		_omniDrive.setVelocity( dir[0], dir[1], 1.0f );
+//    		int x = 0;
+    		float deg = 0;
+    		float w = 0;
+    		deg = getAngleToRotate(x);
+    		w = getAngularSpeed(deg);
+    		rotateInPlace(dir, w);
+    		_omniDrive.setVelocity( dir[0], dir[1], w);
     		counter ++;
     		Thread.sleep(100);
     	}
