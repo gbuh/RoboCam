@@ -19,16 +19,6 @@ public class CameraWidget extends JComponent
 	private volatile Image cameraImg;
 	private PixelColor pixelColor = new PixelColor();
 	Robot robot = new Robot();
-//	private float[] dir = new float[] { 1.0f, 0.0f };
-//	private float deg = -20;
-	
-//	public PixelColor getPixelColor() {
-//		return pixelColor;
-//	}
-//
-//	public void setPixelColor(PixelColor pixelColor) {
-//		this.pixelColor = pixelColor;
-//	}
 
 	public CameraWidget(Robot robot)
 	{
@@ -79,27 +69,30 @@ public class CameraWidget extends JComponent
 //			pixelColor.videoCapture();	
 			
 //        	for (int i = 0; i < 1; i++) {
-			if(pixelColor.robotLaserBlob(img))
-			{
-				String hostname = "127.0.0.1";
-//				DrivelnCircle robotino = new DrivelnCircle();
-				
-				try
-				{
-					robot.connect(hostname, true);
-					robot.drive();
-					robot.disconnect();
-		        
-				}
-				catch (Exception e)
-				{
-					System.out.println(e.toString());
-				}
-//				Robot robot = new Robot();
-//				robot.addListener( new RobotListenerImpl() );
-//				robot.setVelocity(dir[1], dir[0], 0);
-//				robot.rotateInPlace(dir, deg);
-			}
+//			if (pixelColor.robotLaserBlob(img))
+//			{
+//				String hostname = "127.0.0.1:12080";
+////				DrivelnCircle robotino = new DrivelnCircle();
+//				
+//			try
+//				{
+//					int counter = 0;
+////					robot._com.connectToServer(false);
+//					robot.connect(hostname, false);
+//					while (counter < 1) {
+//
+//						robot.drive();
+//
+//						counter++;
+//					}
+//					robot.disconnect();
+////					robot._com.connectToServer(true);
+//				}
+//				catch (Exception e)
+//				{
+//					System.out.println(e.toString());
+//				}
+//			}
 //        	}
 			cameraImg = img;
 			repaint();

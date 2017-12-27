@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>rec_robotino_api2_java.jar</name>
-			<type>2</type>
-			<location>C:/Users/Администратор/eclipse-workspace/Camera/${env.ROBOTINOAPI2_64_DIR}/bin/rec_robotino_api2_java.jar</location>
-		</link>
-	</linkedResources>
 </projectDescription>

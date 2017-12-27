@@ -18,6 +18,8 @@ public class ConnectWidget extends JComponent
 	protected final JTextField textFieldAddress;
 	protected final JButton buttonConnect;
 	
+	private PixelColor pixelColor = new PixelColor();
+	
 	public ConnectWidget(Robot robot)
 	{
 		this.robot = robot;
@@ -97,6 +99,21 @@ public class ConnectWidget extends JComponent
 		@Override
 		public void onImageReceived(Image img)
 		{
+			if (pixelColor.robotLaserBlob(img))
+			{
+			try
+				{
+//					int counter = 0;
+//				while (counter < 1) {
+						robot.drive();
+//						counter++;
+//					}
+				}
+				catch (Exception e)
+				{
+					System.out.println(e.toString());
+				}
+			}
 		}
 
 		@Override

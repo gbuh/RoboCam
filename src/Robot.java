@@ -112,28 +112,28 @@ public class Robot
         v[1] = (float)Math.sin(rad) * tmp + (float)Math.cos(rad) * v[1];
     }
     
+    public void driveForward(float[] inArray, float[] outArray, float a) {
+        outArray[0] = inArray[0] + a; //x mit a
+        outArray[1] = inArray[1]; //y
+    }
+    
     public void drive() throws InterruptedException
     {
     	System.out.println("Driving...");
-//        float[] startVector = new float[] {0.2f, 0.0f };
-        float[] dir = new float[2];
-        float a = 0.0f;
-//        Thread.sleep(5000);
-        while (_com.isConnected() && false == _bumper.value() )
-        {
-
-//        	while (isLaserBlob(cameraImg)) {
-//        		System.out.println("I See Red Laser!!!!!!!!!!!!!!!!");
-//        	}
-            //rotate 360degrees in 5s
-//	        rotate( startVector, dir, a );
-	        rotateInPlace(dir, 45);
-//	        a = 360.0f * _com.msecsElapsed() / 5000;
-
-	        _omniDrive.setVelocity( dir[0], dir[1], 1.0f );
-
-            Thread.sleep(100);
-        }
+    	int counter = 0;
+    	while (counter < 1) { //_com.isConnected() && false == _bumper.value() && 
+    		float[] dir = new float[2];
+    		float a = 0.0f;
+//    		a = 360.0f * _com.msecsElapsed() / 5000;
+    		rotateInPlace(dir, a);
+    		_omniDrive.setVelocity( dir[0], dir[1], 1.0f );
+    		counter ++;
+    		Thread.sleep(100);
+    	}
+    	float[] dir = new float[2];
+    	float a = 0.2f;
+    	driveForward(dir, dir, a);
+    	_omniDrive.setVelocity( dir[0], dir[1], 0.0f );
     }
 /////////////////////////////////////////////////////////////////////////
 	/**

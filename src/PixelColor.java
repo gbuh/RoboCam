@@ -1,18 +1,10 @@
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.videoio.VideoCapture;
-import org.opencv.videoio.Videoio;
 
 public class PixelColor {
 	private int p;
@@ -24,12 +16,8 @@ public class PixelColor {
 	private int height;
 	private int porog = 200;
 	private BufferedImage buffImg;
-	private ConvolveFilter convolveFilter;
 	protected Robot robot;
 ///////////////////////////////////////////////////////////////////	
-	private float[] dir = new float[] { 1.0f, 0.0f };
-	private float deg = -20;
-
 
 	public int getP() {return p;}
 
@@ -48,8 +36,6 @@ public class PixelColor {
 	public int getPorog() {return porog;}
 	
 	public BufferedImage getBuffImg() {return buffImg;}
-	
-	public ConvolveFilter getConvolveFilter() {return convolveFilter;}
 
 	public void setP(int p) {this.p = p;}
 
@@ -68,8 +54,6 @@ public class PixelColor {
 	public void setPorog(int porog) {this.porog = porog;}
 	
 	public void setBuffImg(BufferedImage buffImg) {this.buffImg = buffImg;}
-	
-	public void setConvolveFilter(ConvolveFilter convolveFilter) {this.convolveFilter = convolveFilter;}
 
 	public void getPixelColor(Image img, int x, int y) {
 		buffImg = (BufferedImage)img;
@@ -162,7 +146,7 @@ public class PixelColor {
 			}
 		}
 	}
-	
+/*
 	public void setLaserImage(Image img) {
 //		float matrix[] = {-1, 1, -1, 1, 1, 1, -1, 1, -1}; // увеличение резкости
 //		float matrix[] = {1, -1, 1, -1, -1, -1, 1, -1, 1}; // нахождение черных пятен
@@ -176,13 +160,8 @@ public class PixelColor {
 		buffImg = (BufferedImage)img;
 		buffImg = convolveFilter.filter(buffImg, buffImg);
 	}
-	
-	public void setBoxBlur(Image img) {
-		BoxBlurFilter boxBlurFilter = new BoxBlurFilter();
-		buffImg = (BufferedImage)img;
-		buffImg = boxBlurFilter.filter(buffImg, buffImg);
-	}
-	
+*/	
+
 	public boolean robotLaserBlob(Image img) {
 		buffImg = (BufferedImage)img;
 		//get image width and height
@@ -192,7 +171,7 @@ public class PixelColor {
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				getPixelColor(img, x, y);
-				if (r >= 200 && g <= 10 && b <= 10) // if (r != 0 && g != 0 && b != 0) (r <= 10 && g <= 10 && b >= 200)
+				if (r >= 200 && g <= 10 && b <= 10) // && g <= 10 && b <= 10 if (r != 0 && g != 0 && b != 0) (r <= 10 && g <= 10 && b >= 200)
 //					System.out.println("X =" + x + " Y =" + y);
 //					robot.rotateInPlace(dir, deg);
 					return true;
@@ -290,31 +269,5 @@ public class PixelColor {
 				e.printStackTrace();
 			}
 //		}
-	}
-	
-	public void videoCapture() {
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		VideoCapture camera = new VideoCapture(0); //"video.mp4"
-        camera.set(Videoio.CV_CAP_PROP_FRAME_WIDTH, 640);
-        camera.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT, 480);
-        
-      if(!camera.isOpened()){  
-          System.out.println("Error");  
-      }  
-      else {  
-          int index = 0;  
-          Mat frame = new Mat();  
-          while(true){  
-              if (camera.read(frame)){
-                  System.out.println("Captured Frame Width " + frame.width() + " Height " + frame.height());  
-                    
-//                  Imgcodecs.imwrite("cameraX" + (index++) + ".jpg", frame);  
-                    
-                  System.out.println("OK");  
-                  //break;  
-              }  
-          }     
-      }  
-      camera.release();  
 	}
 }
