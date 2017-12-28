@@ -167,13 +167,11 @@ public class PixelColor {
 		//get image width and height
 		int width = buffImg.getWidth();
 		int height = buffImg.getHeight();
-		//
+		// find red point
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				getPixelColor(img, x, y);
-				if (r >= 200 && g <= 10 && b <= 10) // && g <= 10 && b <= 10 if (r != 0 && g != 0 && b != 0) (r <= 10 && g <= 10 && b >= 200)
-//					System.out.println("X =" + x + " Y =" + y);
-//					robot.rotateInPlace(dir, deg);
+				if (r >= 200 && g <= 10 && b <= 10) // for Robotino® SIM Demo: (r >= 200 && g <= 10 && b <= 10)
 					return true;
 			}
 		}
@@ -185,11 +183,11 @@ public class PixelColor {
 		//get image width and height
 		int width = buffImg.getWidth();
 		int height = buffImg.getHeight();
-		//
+		// find red point
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				getPixelColor(img, x, y);
-				if (r >= 200 && g <= 10 && b <= 10) {// if (r != 0 && g != 0 && b != 0) (r == 255 && g == 255 && b == 255)
+				if (r >= 200 && g <= 10 && b <= 10) {// for Robotino® SIM Demo: (r >= 200 && g <= 10 && b <= 10)
 					System.out.println("X =" + x + " Y =" + y);
 					return x;
 				}

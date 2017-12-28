@@ -138,7 +138,7 @@ public class Robot
     	int counter = 0;
     	while (counter < 1) { //_com.isConnected() && false == _bumper.value() && 
     		float[] dir = new float[2];
-    		float a = 0.0f;
+//    		float a = 0.0f;
 //    		int x = 0;
     		float deg = 0;
     		float w = 0;

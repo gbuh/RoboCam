@@ -10,6 +10,7 @@ import java.awt.*;
  */
 public class MainFrame extends JFrame
 {
+	private static final long serialVersionUID = 4369991658570322276L;
 	protected final ConnectWidget connectComponent;
 	protected final DriveWidget driveComponent;
 	protected final CameraWidget cameraComponent;

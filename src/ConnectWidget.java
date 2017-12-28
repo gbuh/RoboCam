@@ -13,6 +13,8 @@ import javax.swing.JTextField;
  */
 public class ConnectWidget extends JComponent
 {
+	private static final long serialVersionUID = -8264386749002190336L;
+
 	protected final Robot robot;
 	
 	protected final JTextField textFieldAddress;

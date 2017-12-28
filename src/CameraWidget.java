@@ -16,6 +16,7 @@ import javax.swing.JComponent;
  */
 public class CameraWidget extends JComponent
 {
+	private static final long serialVersionUID = 7104212723172514803L;
 	private volatile Image cameraImg;
 	private PixelColor pixelColor = new PixelColor();
 	Robot robot = new Robot();
@@ -34,8 +35,13 @@ public class CameraWidget extends JComponent
 	@Override
 	protected void paintComponent(Graphics g)
 	{
-		if(cameraImg != null && !pixelColor.robotLaserBlob(cameraImg)) //  
+		if(cameraImg != null) //  
 		{
+			if(pixelColor.robotLaserBlob(cameraImg)) //  
+			{
+				g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
+				g.drawString( "I see red laser blob", getWidth() / 2 - 50, getHeight() / 2 - 5 );
+			} else
 			g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
 		}
 		else

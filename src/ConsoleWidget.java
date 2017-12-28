@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
  */
 public class ConsoleWidget extends JComponent
 {
+	private static final long serialVersionUID = -7611955566955715984L;
 	protected final JTextArea textArea;
 	
 	public ConsoleWidget()
