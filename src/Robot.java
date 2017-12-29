@@ -103,13 +103,6 @@ public class Robot
 		if (x == 160) {
 			deg = 0;
 		} else deg = (160 - x) * 0.28125f;
-		//turn left
-//		else if (x < 160) {
-//			deg = (160 - x) * 0.28125f;
-//			//turn right
-//		} else if(x > 160) {
-//			deg = (x - 160) * 0.28125f;
-//		}
 		return deg;
 	}
 
@@ -136,8 +129,8 @@ public class Robot
     {
     	System.out.println("Driving...");
     	int counter = 0;
-    	while (counter < 1) { //_com.isConnected() && false == _bumper.value() && 
-    		float[] dir = new float[2];
+		float[] dir = new float[2];
+    	while (_com.isConnected() && false == _bumper.value() && counter < 1) { //
 //    		float a = 0.0f;
 //    		int x = 0;
     		float deg = 0;
@@ -149,7 +142,7 @@ public class Robot
     		counter ++;
     		Thread.sleep(100);
     	}
-    	float[] dir = new float[2];
+//    	float[] dir = new float[2];
     	float a = 0.2f;
     	driveForward(dir, dir, a);
     	_omniDrive.setVelocity( dir[0], dir[1], 0.0f );
@@ -211,7 +204,7 @@ public class Robot
 		public MyCamera()
 		{
 			setCameraNumber(0);
-			setBGREnabled(false);
+			setBGREnabled(false); //////////////////////////////////
 //			setFormat(1920, 1080, "png");////////////////////////////
 		}
 		

@@ -15,6 +15,7 @@ public class PixelColor {
 	private int width;
 	private int height;
 	private int porog = 200;
+	int light = 240;
 	private BufferedImage buffImg;
 	protected Robot robot;
 ///////////////////////////////////////////////////////////////////	
@@ -66,6 +67,38 @@ public class PixelColor {
 		g = (p>>8) & 0xff;
 		//get blue
 		b = p & 0xff;
+	}
+	
+	public void getPixelColorPrint(Image img, int x, int y) {
+		buffImg = (BufferedImage)img;
+		p = buffImg.getRGB(x, y);
+		//get alpha
+		a = (p>>24) & 0xff;
+		//get red
+		r = (p>>16) & 0xff;
+		//get green
+		g = (p>>8) & 0xff;
+		//get blue
+		b = p & 0xff;
+		if (r > 205 && g > 165 && b > 175) {
+		System.out.println("r= " + r + "\ng= "+ g + "\nb= " + b);
+		}
+	}
+	
+	public boolean getPixelColorLogic(Image img, int x, int y) {
+		buffImg = (BufferedImage)img;
+		p = buffImg.getRGB(x, y);
+		//get alpha
+		a = (p>>24) & 0xff;
+		//get red
+		r = (p>>16) & 0xff;
+		//get green
+		g = (p>>8) & 0xff;
+		//get blue
+		b = p & 0xff;
+		if (r > 205 && g > 165 && b > 175) {
+		return true;
+		} else return false;
 	}
 
 	public void setPixelColor(Image img, int x, int y, int a, int r, int g, int b) {
@@ -162,7 +195,7 @@ public class PixelColor {
 	}
 */	
 
-	public boolean robotLaserBlob(Image img) {
+	public boolean robotLaserSpot(Image img) {
 		buffImg = (BufferedImage)img;
 		//get image width and height
 		int width = buffImg.getWidth();
@@ -171,14 +204,15 @@ public class PixelColor {
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				getPixelColor(img, x, y);
-				if (r >= 200 && g <= 10 && b <= 10) // for Robotino® SIM Demo: (r >= 200 && g <= 10 && b <= 10)
+//				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150)
+				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150) //(r > light && g > light && b > light)// for Robotino® SIM Demo: (r > 200 && g < 10 && b < 10) find red cylinder
 					return true;
 			}
 		}
 		return false;
 	}
 	
-	public int getLaserBlob(Image img) {
+	public int getLaserSpot(Image img) {
 		buffImg = (BufferedImage)img;
 		//get image width and height
 		int width = buffImg.getWidth();
@@ -187,7 +221,8 @@ public class PixelColor {
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				getPixelColor(img, x, y);
-				if (r >= 200 && g <= 10 && b <= 10) {// for Robotino® SIM Demo: (r >= 200 && g <= 10 && b <= 10)
+//				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150)
+				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150)  {// (r > light && g > light && b > light)// for Robotino® SIM Demo: (r > 200 && g < 10 && b < 10) find red cylinder
 					System.out.println("X =" + x + " Y =" + y);
 					return x;
 				}

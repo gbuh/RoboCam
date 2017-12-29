@@ -37,10 +37,10 @@ public class CameraWidget extends JComponent
 	{
 		if(cameraImg != null) //  
 		{
-			if(pixelColor.robotLaserBlob(cameraImg)) //  
+			if(pixelColor.robotLaserSpot(cameraImg)) //  
 			{
 				g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
-				g.drawString( "I see red laser blob", getWidth() / 2 - 50, getHeight() / 2 - 5 );
+				g.drawString( "I see a laser spot...", getWidth() / 2 - 50, getHeight() / 2 - 5 );
 			} else
 			g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
 		}

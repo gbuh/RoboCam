@@ -83,3 +83,36 @@ public class Main
 	}
 }
 */
+/*
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Main
+{	
+	public static void main(String[] args)
+	{
+		Image cameraImg = null;
+		PixelColor pixelColor = new PixelColor();
+		File inFile = new File("./fotoLaser/Laser3.png");
+		int x = 0;
+		int y = 0;
+		for (x = 0; x < 320; x++) {
+			for (y = 0; y < 240; y++) {
+				try {
+					cameraImg = ImageIO.read(inFile);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (pixelColor.getPixelColorLogic(cameraImg, x, y)) {
+				System.out.println("x= " + x + "; y= " + y);
+				pixelColor.getPixelColorPrint(cameraImg, x, y);
+				}
+			}
+		}
+	}
+}
+*/
