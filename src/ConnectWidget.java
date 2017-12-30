@@ -101,12 +101,13 @@ public class ConnectWidget extends JComponent
 		@Override
 		public void onImageReceived(Image img)
 		{
-			if (pixelColor.robotLaserSpot(img))
+			int x = pixelColor.getLaserSpot(img);
+			if (pixelColor.isLaserSpot())
 			{
 			try
 				{
-				int x = 0;
-				x = pixelColor.getLaserSpot(img);
+//				int x = 0;
+//				x = pixelColor.getLaserSpot(img);
 //					int counter = 0;
 //				while (counter < 1) {
 						robot.drive(x);

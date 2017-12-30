@@ -37,7 +37,7 @@ public class CameraWidget extends JComponent
 	{
 		if(cameraImg != null) //  
 		{
-			if(pixelColor.robotLaserSpot(cameraImg)) //  
+			if(pixelColor.isLaserSpot()) //  
 			{
 				g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
 				g.drawString( "I see a laser spot...", getWidth() / 2 - 50, getHeight() / 2 - 5 );
