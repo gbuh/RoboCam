@@ -27,7 +27,7 @@ public class ConnectWidget extends JComponent
 		this.robot = robot;
 		
 		buttonConnect = new JButton("Connect");
-		textFieldAddress = new JTextField("172.26.1.1:12080", 12); // 127.0.0.1:12080 or 172.26.1.1:12080
+		textFieldAddress = new JTextField("127.0.0.1:12080", 12); // 127.0.0.1:12080 or 172.26.1.1:12080
 		
 		setLayout( new FlowLayout() );
 		add(textFieldAddress);
@@ -102,19 +102,21 @@ public class ConnectWidget extends JComponent
 		public void onImageReceived(Image img)
 		{
 			int x = pixelColor.getLaserSpot(img);
+//			if (!pixelColor.isLaserSpot()) {
+
+//			}
 			if (pixelColor.isLaserSpot())
-			{
-			try
+			{ 
+			try{
+				robot.driveToLaserSpot(x);
+				} catch (Exception e)
 				{
-//				int x = 0;
-//				x = pixelColor.getLaserSpot(img);
-//					int counter = 0;
-//				while (counter < 1) {
-						robot.drive(x);
-//						counter++;
-//					}
+					System.out.println(e.toString());
 				}
-				catch (Exception e)
+			} else {
+				try {
+					robot.driveInPlace();
+				} catch (Exception e)
 				{
 					System.out.println(e.toString());
 				}

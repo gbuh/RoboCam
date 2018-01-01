@@ -125,27 +125,45 @@ public class Robot
         outArray[1] = inArray[1]; //y
     }
     
-    public void drive(int x) throws InterruptedException
+    public void driveToLaserSpot(int x) throws InterruptedException
     {
     	System.out.println("Driving...");
     	int counter = 0;
 		float[] dir = new float[2];
+		float deg = 0;
+		float angularSpeed = 0;
+    	float forwardSpeed = 1.0f;
+		int rotateSpeedFactor = 1;
     	while (_com.isConnected() && false == _bumper.value() && counter < 1) { //
-//    		float a = 0.0f;
-//    		int x = 0;
-    		float deg = 0;
-    		float w = 0;
     		deg = getAngleToRotate(x);
-    		w = getAngularSpeed(deg);
-    		rotateInPlace(dir, w);
-    		_omniDrive.setVelocity( dir[0], dir[1], w);
+    		angularSpeed = getAngularSpeed(deg);
+    		rotateInPlace(dir, angularSpeed);
+    		angularSpeed = angularSpeed * rotateSpeedFactor;
+    		_omniDrive.setVelocity( dir[0], dir[1], angularSpeed);
     		counter ++;
     		Thread.sleep(100);
     	}
-//    	float[] dir = new float[2];
-    	float a = 0.2f;
-    	driveForward(dir, dir, a);
+    	driveForward(dir, dir, forwardSpeed);
     	_omniDrive.setVelocity( dir[0], dir[1], 0.0f );
+    }
+    
+    public void driveInPlace() throws InterruptedException
+    {
+    	System.out.println("Rotate in place...");
+    	int counter = 0;
+		float[] dir = new float[2];
+		float deg = 0;
+		float angularSpeed = 0;
+		float rotateSpeedFactor = 0.1f;
+    	if (_com.isConnected() && false == _bumper.value() && counter < 1) { //
+    		deg = 360;
+    		angularSpeed = getAngularSpeed(deg);
+    		rotateInPlace(dir, angularSpeed);
+    		angularSpeed = angularSpeed * rotateSpeedFactor;
+    		_omniDrive.setVelocity( dir[0], dir[1], angularSpeed);
+    		counter ++;
+    		Thread.sleep(100);
+    	}
     }
 /////////////////////////////////////////////////////////////////////////
 	/**

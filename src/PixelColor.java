@@ -226,8 +226,8 @@ public class PixelColor {
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				getPixelColor(img, x, y);
-//				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150)
-				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150)  {// (r > light && g > light && b > light)// for Robotino® SIM Demo: (r > 200 && g < 10 && b < 10) find red cylinder
+//				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150) find red laser spot
+				if (r > 200 && g < 10 && b < 10)  {// for Robotino® SIM Demo: (r > 200 && g < 10 && b < 10) find red cylinder
 					System.out.println("X =" + x + " Y =" + y);
 					laserSpot = true;
 					return x;
@@ -235,6 +235,7 @@ public class PixelColor {
 			} laserSpot = false;
 		} return 0;
 	}
+	
 /*	
 	public int getLaserSpot(Image img) {
 		buffImg = (BufferedImage)img;

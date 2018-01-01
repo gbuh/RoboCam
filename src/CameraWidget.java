@@ -37,12 +37,15 @@ public class CameraWidget extends JComponent
 	{
 		if(cameraImg != null) //  
 		{
+			pixelColor.getLaserSpot(cameraImg);
 			if(pixelColor.isLaserSpot()) //  
 			{
 				g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
 				g.drawString( "I see a laser spot...", getWidth() / 2 - 50, getHeight() / 2 - 5 );
-			} else
+			} else {
 			g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
+			g.drawString( "Waiting for...", getWidth() / 2 - 50, getHeight() / 2 - 5 );
+			}
 		}
 		else
 		{
@@ -58,48 +61,6 @@ public class CameraWidget extends JComponent
 		@Override
 		public void onImageReceived(Image img)
 		{
-//			float matrix[] = {1, 1, 1, 1, 1, 1, 1, 1, 1};
-//			ConvolveFilter filter = new ConvolveFilter(matrix);
-//			filter.filter((BufferedImage)img, (BufferedImage)img);
-			
-//			PixelColor pixelColor = new PixelColor();
-			//	pixelColor.getPixelColor(img, 0, 0);
-			//	pixelColor.setPixelColor(img, 0, 0, 255, 255, 255, 255);
-//			pixelColor.setNegativePicture(img);
-//			pixelColor.saveImage(img);
-//			pixelColor.saveImageFrame(img);
-//			pixelColor.setGrayPicture(img);
-//			pixelColor.setLaserImage(img);
-//			pixelColor.setBlackWhitePicture(img);
-//			pixelColor.robotLaserBlob(img);
-//			pixelColor.videoCapture();	
-			
-//        	for (int i = 0; i < 1; i++) {
-//			if (pixelColor.robotLaserBlob(img))
-//			{
-//				String hostname = "127.0.0.1:12080";
-////				DrivelnCircle robotino = new DrivelnCircle();
-//				
-//			try
-//				{
-//					int counter = 0;
-////					robot._com.connectToServer(false);
-//					robot.connect(hostname, false);
-//					while (counter < 1) {
-//
-//						robot.drive();
-//
-//						counter++;
-//					}
-//					robot.disconnect();
-////					robot._com.connectToServer(true);
-//				}
-//				catch (Exception e)
-//				{
-//					System.out.println(e.toString());
-//				}
-//			}
-//        	}
 			cameraImg = img;
 			repaint();
 		}	

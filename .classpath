@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="C:/Users/Администратор/eclipse-workspace/Camera/bin"/>
 	<classpathentry kind="lib" path="C:/REC_GmbH/robotino/api2/bin/rec_robotino_api2_java.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/rec_robotino_api2"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/opencv300"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
