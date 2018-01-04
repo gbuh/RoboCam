@@ -27,7 +27,7 @@ public class ConnectWidget extends JComponent
 		this.robot = robot;
 		
 		buttonConnect = new JButton("Connect");
-		textFieldAddress = new JTextField("127.0.0.1:12080", 12); // 127.0.0.1:12080 or 172.26.1.1:12080
+		textFieldAddress = new JTextField("172.26.1.1:12080", 12); // 127.0.0.1:12080 or 172.26.1.1:12080
 		
 		setLayout( new FlowLayout() );
 		add(textFieldAddress);
@@ -113,14 +113,15 @@ public class ConnectWidget extends JComponent
 				{
 					System.out.println(e.toString());
 				}
-			} else {
-				try {
-					robot.driveInPlace();
-				} catch (Exception e)
-				{
-					System.out.println(e.toString());
-				}
 			}
+//			else {
+//				try {
+//					robot.driveInPlace();
+//				} catch (Exception e)
+//				{
+//					System.out.println(e.toString());
+//				}
+//			}
 		}
 
 		@Override

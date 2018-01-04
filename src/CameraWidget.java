@@ -40,10 +40,10 @@ public class CameraWidget extends JComponent
 			pixelColor.getLaserSpot(cameraImg);
 			if(pixelColor.isLaserSpot()) //  
 			{
-				g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
+//				g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
 				g.drawString( "I see a laser spot...", getWidth() / 2 - 50, getHeight() / 2 - 5 );
 			} else {
-			g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
+//			g.drawImage( cameraImg, 0, 0, getWidth(), getHeight(), null );
 			g.drawString( "Waiting for...", getWidth() / 2 - 50, getHeight() / 2 - 5 );
 			}
 		}

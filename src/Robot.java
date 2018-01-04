@@ -121,7 +121,7 @@ public class Robot
     }
     
     public void driveForward(float[] inArray, float[] outArray, float a) {
-        outArray[0] = inArray[0] + a; //x mit a
+        outArray[0] = inArray[0] + a; //x with a
         outArray[1] = inArray[1]; //y
     }
     
@@ -133,7 +133,7 @@ public class Robot
 		float deg = 0;
 		float angularSpeed = 0;
     	float forwardSpeed = 1.0f;
-		int rotateSpeedFactor = 1;
+		float rotateSpeedFactor = 1.0f;
     	while (_com.isConnected() && false == _bumper.value() && counter < 1) { //
     		deg = getAngleToRotate(x);
     		angularSpeed = getAngularSpeed(deg);
@@ -143,8 +143,11 @@ public class Robot
     		counter ++;
     		Thread.sleep(100);
     	}
+		if (x > 150 && x < 170)
+		{
     	driveForward(dir, dir, forwardSpeed);
     	_omniDrive.setVelocity( dir[0], dir[1], 0.0f );
+		}
     }
     
     public void driveInPlace() throws InterruptedException

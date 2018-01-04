@@ -74,6 +74,34 @@ public class PixelColor {
 		b = p & 0xff;
 	}
 	
+	public int getLaserSpot(Image img) {
+		buffImg = (BufferedImage)img;
+		//get image width and height
+//		int width = buffImg.getWidth();
+//		int height = buffImg.getHeight();
+		// find red point
+		for(int y = 0; y < buffImg.getHeight(); y++){
+			for(int x = 0; x < buffImg.getWidth(); x++){
+				p = buffImg.getRGB(x, y);
+				//get alpha
+				a = (p>>24) & 0xff;
+				//get red
+				r = (p>>16) & 0xff;
+				//get green
+				g = (p>>8) & 0xff;
+				//get blue
+				b = p & 0xff;
+//				getPixelColor(img, x, y);
+				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150) { //find red laser spot
+//				if (r > 200 && g < 10 && b < 10) {// for Robotino® SIM Demo: (r > 200 && g < 10 && b < 10) find red cylinder
+					System.out.println("X =" + x + " Y =" + y);
+					laserSpot = true;
+					return x;
+				}
+			} laserSpot = false;
+		} return 0;
+	}
+
 	public void getPixelColorPrint(Image img, int x, int y) {
 		buffImg = (BufferedImage)img;
 		p = buffImg.getRGB(x, y);
@@ -215,25 +243,6 @@ public class PixelColor {
 			}
 		}
 		return false;
-	}
-	
-	public int getLaserSpot(Image img) {
-		buffImg = (BufferedImage)img;
-		//get image width and height
-		int width = buffImg.getWidth();
-		int height = buffImg.getHeight();
-		// find red point
-		for(int y = 0; y < height; y++){
-			for(int x = 0; x < width; x++){
-				getPixelColor(img, x, y);
-//				if (r > 200 && g > 120 && g < 150 && b > 120 && b < 150) find red laser spot
-				if (r > 200 && g < 10 && b < 10)  {// for Robotino® SIM Demo: (r > 200 && g < 10 && b < 10) find red cylinder
-					System.out.println("X =" + x + " Y =" + y);
-					laserSpot = true;
-					return x;
-				}
-			} laserSpot = false;
-		} return 0;
 	}
 	
 /*	
